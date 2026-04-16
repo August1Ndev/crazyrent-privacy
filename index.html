@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>CrazyRent — Privacy Policy</title>
   <style>
     :root {
@@ -18,20 +18,24 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { scroll-behavior: smooth; }
+
     body {
       background: var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 16px;
       line-height: 1.7;
-      padding: 0 0 80px;
+      padding: 0 0 env(safe-area-inset-bottom, 40px);
+      padding-bottom: max(80px, calc(80px + env(safe-area-inset-bottom)));
+      -webkit-text-size-adjust: 100%;
     }
 
     /* ── Hero ── */
     header {
       background: linear-gradient(135deg, #0d0d1a 0%, #1a1030 50%, #0d0d1a 100%);
       border-bottom: 1px solid var(--border);
-      padding: 64px 24px 48px;
+      padding: clamp(32px, 8vw, 64px) clamp(16px, 5vw, 24px) clamp(28px, 7vw, 48px);
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -40,7 +44,7 @@
       content: '';
       position: absolute;
       top: -80px; right: -60px;
-      width: 320px; height: 320px;
+      width: clamp(180px, 40vw, 320px); height: clamp(180px, 40vw, 320px);
       background: radial-gradient(circle, rgba(204,17,17,0.25) 0%, transparent 70%);
       pointer-events: none;
     }
@@ -48,7 +52,7 @@
       content: '';
       position: absolute;
       bottom: -60px; left: -40px;
-      width: 260px; height: 260px;
+      width: clamp(140px, 35vw, 260px); height: clamp(140px, 35vw, 260px);
       background: radial-gradient(circle, rgba(98,212,255,0.15) 0%, transparent 70%);
       pointer-events: none;
     }
@@ -64,14 +68,14 @@
     }
     .logo-ring svg { width: 36px; height: 36px; fill: var(--accent); }
     header h1 {
-      font-size: clamp(26px, 5vw, 38px);
+      font-size: clamp(24px, 6vw, 38px);
       font-weight: 700;
       letter-spacing: -0.5px;
       margin-bottom: 8px;
     }
     header p.sub {
       color: var(--muted);
-      font-size: 14px;
+      font-size: clamp(12px, 3.5vw, 14px);
       letter-spacing: 0.3px;
     }
     .badge {
@@ -79,7 +83,7 @@
       background: rgba(98,212,255,0.1);
       border: 1px solid rgba(98,212,255,0.3);
       color: var(--accent2);
-      font-size: 12px;
+      font-size: clamp(11px, 3vw, 12px);
       font-weight: 600;
       letter-spacing: 0.5px;
       padding: 4px 12px;
@@ -91,8 +95,9 @@
     .lang-tabs {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 8px;
-      padding: 24px 16px 0;
+      padding: clamp(16px, 4vw, 24px) 16px 0;
     }
     .lang-tab {
       background: var(--card);
@@ -104,6 +109,8 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
     .lang-tab.active, .lang-tab:hover {
       background: var(--accent);
@@ -112,7 +119,7 @@
     }
 
     /* ── Content ── */
-    .content { display: none; max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .content { display: none; max-width: 760px; margin: 0 auto; padding: 0 clamp(12px, 4vw, 24px); }
     .content.active { display: block; }
 
     /* ── Section ── */
@@ -120,8 +127,8 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 28px 32px;
-      margin-top: 24px;
+      padding: clamp(16px, 5vw, 28px) clamp(16px, 5vw, 32px);
+      margin-top: clamp(14px, 3vw, 24px);
     }
     .section-header {
       display: flex;
@@ -134,79 +141,124 @@
       align-items: center;
       justify-content: center;
       width: 40px; height: 40px;
+      min-width: 40px;
       border-radius: 10px;
       background: rgba(204,17,17,0.12);
       border: 1px solid rgba(204,17,17,0.25);
-      flex-shrink: 0;
     }
     .section-icon svg { width: 20px; height: 20px; fill: var(--accent); }
     .section h2 {
-      font-size: 18px;
+      font-size: clamp(15px, 4vw, 18px);
       font-weight: 600;
       color: #fff;
+      word-break: break-word;
     }
-    .section p, .section li { color: var(--muted); font-size: 15px; }
+    .section p, .section li {
+      color: var(--muted);
+      font-size: clamp(13px, 3.5vw, 15px);
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
     .section p + p { margin-top: 10px; }
-    .section ul { padding-left: 20px; margin-top: 10px; }
+    .section ul { padding-left: 18px; margin-top: 10px; }
     .section li { margin-bottom: 6px; }
-    .section a { color: var(--accent2); text-decoration: none; }
+    .section a {
+      color: var(--accent2);
+      text-decoration: none;
+      word-break: break-all;
+    }
     .section a:hover { text-decoration: underline; }
 
-    /* ── Table ── */
-    .data-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+    /* ── Table — scrollable on mobile ── */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 16px;
+      border-radius: 8px;
+    }
+    .data-table {
+      width: 100%;
+      min-width: 480px;
+      border-collapse: collapse;
+      font-size: clamp(12px, 3vw, 14px);
+    }
     .data-table th {
       background: rgba(255,255,255,0.04);
       color: #fff;
       font-weight: 600;
-      padding: 10px 14px;
+      padding: clamp(8px, 2vw, 10px) clamp(10px, 2.5vw, 14px);
       text-align: left;
       border-bottom: 1px solid var(--border);
+      white-space: nowrap;
     }
     .data-table td {
       color: var(--muted);
-      padding: 10px 14px;
+      padding: clamp(8px, 2vw, 10px) clamp(10px, 2.5vw, 14px);
       border-bottom: 1px solid rgba(255,255,255,0.04);
       vertical-align: top;
     }
     .data-table tr:last-child td { border-bottom: none; }
+
+    /* Scroll hint on very narrow screens */
+    .table-hint {
+      display: none;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: right;
+      margin-top: 4px;
+      opacity: 0.7;
+    }
+    @media (max-width: 540px) {
+      .table-hint { display: block; }
+    }
 
     /* ── Highlight box ── */
     .highlight {
       background: rgba(98,212,255,0.06);
       border: 1px solid rgba(98,212,255,0.2);
       border-radius: 10px;
-      padding: 14px 18px;
+      padding: clamp(10px, 3vw, 14px) clamp(12px, 4vw, 18px);
       margin-top: 14px;
-      font-size: 14px;
+      font-size: clamp(12px, 3.5vw, 14px);
       color: rgba(255,255,255,0.7);
+      word-break: break-word;
     }
 
     /* ── Footer ── */
     footer {
       max-width: 760px;
-      margin: 40px auto 0;
-      padding: 0 24px;
+      margin: clamp(24px, 5vw, 40px) auto 0;
+      padding: 0 clamp(12px, 4vw, 24px);
       text-align: center;
       color: var(--muted);
-      font-size: 13px;
+      font-size: clamp(11px, 3vw, 13px);
     }
     footer strong { color: var(--text); }
+
+    /* ── Mobile overrides ── */
+    @media (max-width: 400px) {
+      .logo-ring { width: 56px; height: 56px; }
+      .logo-ring svg { width: 28px; height: 28px; }
+      .section-icon { width: 34px; height: 34px; min-width: 34px; }
+      .section-icon svg { width: 17px; height: 17px; }
+    }
   </style>
 </head>
 <body>
 
 <header>
   <div class="logo-ring">
-    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.08 3.11H5.77L6.85 7zM19 17H5v-5h14v5zm-8-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-4 0c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm8 0c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/></svg>
   </div>
   <h1>CrazyRent</h1>
   <p class="sub">by DIGITAL DREAM S.R.L. — Privacy Policy</p>
-  <span class="badge">Effective: April 16, 2025</span>
+  <span class="badge">Effective: April 16, 2026</span>
 </header>
 
 <div class="lang-tabs">
-  <button class="lang-tab active" onclick="showLang('en')">🇬🇧 English</button>
-  <button class="lang-tab" onclick="showLang('ro')">🇲🇩 Română</button>
+  <button class="lang-tab active" onclick="showLang('en', this)">🇬🇧 English</button>
+  <button class="lang-tab" onclick="showLang('ro', this)">🇲🇩 Română</button>
 </div>
 
 <!-- ═══════════════════ ENGLISH ═══════════════════ -->
@@ -228,35 +280,38 @@
       <h2>Information We Collect</h2>
     </div>
     <p>The app collects and processes the following categories of information:</p>
-    <table class="data-table">
-      <tr><th>Category</th><th>Examples</th><th>Purpose</th></tr>
-      <tr>
-        <td><strong>Authentication data</strong></td>
-        <td>Email address, password (hashed by Firebase)</td>
-        <td>Secure login to the application</td>
-      </tr>
-      <tr>
-        <td><strong>Contract data</strong></td>
-        <td>Contract number, rental period, advance payment</td>
-        <td>Generating and managing rental contracts</td>
-      </tr>
-      <tr>
-        <td><strong>Client personal data</strong></td>
-        <td>Full name, IDNP/IDNO, phone number, address, banking details</td>
-        <td>Filling rental contract parties section</td>
-      </tr>
-      <tr>
-        <td><strong>Vehicle data</strong></td>
-        <td>Brand, model, year, VIN, registration plate, daily cost, photo</td>
-        <td>Fleet management and contract generation</td>
-      </tr>
-      <tr>
-        <td><strong>Usage data</strong></td>
-        <td>App diagnostics (Firebase Analytics, crash reports)</td>
-        <td>App stability and performance improvement</td>
-      </tr>
-    </table>
-    <div class="highlight">We do <strong>not</strong> collect payment card numbers, biometric data, or location data from app users. GPS data referenced in rental contracts is collected by <strong>the vehicle's GPS system</strong>, not this application.</div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <tr><th>Category</th><th>Examples</th><th>Purpose</th></tr>
+        <tr>
+          <td><strong>Authentication data</strong></td>
+          <td>Email address, password (hashed by Firebase)</td>
+          <td>Secure login to the application</td>
+        </tr>
+        <tr>
+          <td><strong>Contract data</strong></td>
+          <td>Contract number, rental period, advance payment</td>
+          <td>Generating and managing rental contracts</td>
+        </tr>
+        <tr>
+          <td><strong>Client personal data</strong></td>
+          <td>Full name, IDNP/IDNO, phone, address, banking details</td>
+          <td>Filling rental contract parties section</td>
+        </tr>
+        <tr>
+          <td><strong>Vehicle data</strong></td>
+          <td>Brand, model, year, VIN, plate, daily cost, photo</td>
+          <td>Fleet management and contract generation</td>
+        </tr>
+        <tr>
+          <td><strong>Usage data</strong></td>
+          <td>App diagnostics (Firebase crash reports)</td>
+          <td>App stability and performance improvement</td>
+        </tr>
+      </table>
+    </div>
+    <p class="table-hint">← scroll to see more →</p>
+    <div class="highlight">We do <strong>not</strong> collect payment card numbers, biometric data, or location data from app users.</div>
   </div>
 
   <div class="section">
@@ -282,27 +337,30 @@
       <h2>Third-Party Services</h2>
     </div>
     <p>We use the following third-party services that may process your data:</p>
-    <table class="data-table">
-      <tr><th>Service</th><th>Provider</th><th>Purpose</th><th>Policy</th></tr>
-      <tr>
-        <td>Firebase Authentication</td>
-        <td>Google LLC</td>
-        <td>User authentication &amp; password reset</td>
-        <td><a href="https://firebase.google.com/support/privacy" target="_blank">View</a></td>
-      </tr>
-      <tr>
-        <td>Cloud Firestore</td>
-        <td>Google LLC</td>
-        <td>Storing contracts, clients, vehicles</td>
-        <td><a href="https://firebase.google.com/support/privacy" target="_blank">View</a></td>
-      </tr>
-      <tr>
-        <td>Firebase Storage</td>
-        <td>Google LLC</td>
-        <td>Storing vehicle images</td>
-        <td><a href="https://firebase.google.com/support/privacy" target="_blank">View</a></td>
-      </tr>
-    </table>
+    <div class="table-wrap">
+      <table class="data-table">
+        <tr><th>Service</th><th>Provider</th><th>Purpose</th><th>Policy</th></tr>
+        <tr>
+          <td>Firebase Authentication</td>
+          <td>Google LLC</td>
+          <td>User authentication &amp; password reset</td>
+          <td><a href="https://firebase.google.com/support/privacy" target="_blank">View</a></td>
+        </tr>
+        <tr>
+          <td>Cloud Firestore</td>
+          <td>Google LLC</td>
+          <td>Storing contracts, clients, vehicles</td>
+          <td><a href="https://firebase.google.com/support/privacy" target="_blank">View</a></td>
+        </tr>
+        <tr>
+          <td>Firebase Storage</td>
+          <td>Google LLC</td>
+          <td>Storing vehicle images</td>
+          <td><a href="https://firebase.google.com/support/privacy" target="_blank">View</a></td>
+        </tr>
+      </table>
+    </div>
+    <p class="table-hint">← scroll to see more →</p>
     <p style="margin-top:14px;">Google's data processing facilities are located in the European Union and United States. Google is certified under the EU-U.S. Data Privacy Framework.</p>
   </div>
 
@@ -311,7 +369,6 @@
       <div class="section-icon"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
       <h2>Data Security</h2>
     </div>
-    <p>We implement appropriate technical and organizational measures to protect your data:</p>
     <ul>
       <li>All data is transmitted over encrypted HTTPS connections</li>
       <li>Authentication is handled by Firebase Authentication with industry-standard security</li>
@@ -326,13 +383,12 @@
       <div class="section-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
       <h2>Data Retention</h2>
     </div>
-    <p>We retain personal data for as long as necessary to fulfill the purposes described in this policy:</p>
     <ul>
       <li><strong>Authentication data</strong> — retained for the duration of the authorized user account</li>
       <li><strong>Contract &amp; client data</strong> — retained for a minimum of 5 years in accordance with Moldovan accounting and tax legislation</li>
       <li><strong>Vehicle data</strong> — retained while the vehicle is part of the active fleet</li>
     </ul>
-    <p>Upon request, we will delete personal data that is no longer legally required to be retained, within 30 days.</p>
+    <p style="margin-top:10px;">Upon request, we will delete personal data no longer legally required to be retained, within 30 days.</p>
   </div>
 
   <div class="section">
@@ -357,7 +413,6 @@
       <div class="section-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
       <h2>Contact Us</h2>
     </div>
-    <p>If you have questions about this Privacy Policy or how we handle your data:</p>
     <ul>
       <li><strong>Company:</strong> DIGITAL DREAM S.R.L.</li>
       <li><strong>Fiscal Code (IDNO):</strong> 1023600008624</li>
@@ -395,14 +450,34 @@
       <div class="section-icon"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
       <h2>Informațiile pe care le colectăm</h2>
     </div>
-    <table class="data-table">
-      <tr><th>Categorie</th><th>Exemple</th><th>Scop</th></tr>
-      <tr><td><strong>Date de autentificare</strong></td><td>Adresă email, parolă (criptată de Firebase)</td><td>Acces securizat în aplicație</td></tr>
-      <tr><td><strong>Date contractuale</strong></td><td>Nr. contract, perioadă, avans</td><td>Generarea și gestionarea contractelor</td></tr>
-      <tr><td><strong>Date personale ale clienților</strong></td><td>Nume, IDNP/IDNO, telefon, adresă, date bancare</td><td>Completarea contractelor de locațiune</td></tr>
-      <tr><td><strong>Date vehicule</strong></td><td>Marcă, model, an, VIN, nr. înmatriculare, cost/zi, fotografie</td><td>Gestionarea flotei</td></tr>
-      <tr><td><strong>Date de utilizare</strong></td><td>Diagnostice Firebase, rapoarte de erori</td><td>Îmbunătățirea performanței aplicației</td></tr>
-    </table>
+    <div class="table-wrap">
+      <table class="data-table">
+        <tr><th>Categorie</th><th>Exemple</th><th>Scop</th></tr>
+        <tr><td><strong>Date de autentificare</strong></td><td>Adresă email, parolă (criptată de Firebase)</td><td>Acces securizat în aplicație</td></tr>
+        <tr><td><strong>Date contractuale</strong></td><td>Nr. contract, perioadă, avans</td><td>Generarea și gestionarea contractelor</td></tr>
+        <tr><td><strong>Date personale ale clienților</strong></td><td>Nume, IDNP/IDNO, telefon, adresă, date bancare</td><td>Completarea contractelor de locațiune</td></tr>
+        <tr><td><strong>Date vehicule</strong></td><td>Marcă, model, an, VIN, nr. înmatriculare, cost/zi, fotografie</td><td>Gestionarea flotei</td></tr>
+        <tr><td><strong>Date de utilizare</strong></td><td>Diagnostice Firebase, rapoarte de erori</td><td>Îmbunătățirea performanței aplicației</td></tr>
+      </table>
+    </div>
+    <p class="table-hint">← glisați pentru mai mult →</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
+      <h2>Cum utilizăm informațiile</h2>
+    </div>
+    <ul>
+      <li>Autentificarea și autorizarea accesului în aplicație</li>
+      <li>Crearea, stocarea și gestionarea contractelor de locațiune</li>
+      <li>Generarea contractelor PDF pentru acordurile de închiriere</li>
+      <li>Menținerea evidenței clienților și vehiculelor</li>
+      <li>Identificarea clienților din lista neagră</li>
+      <li>Trimiterea emailurilor de resetare a parolei prin Firebase Authentication</li>
+      <li>Îmbunătățirea performanței și remedierea problemelor tehnice</li>
+    </ul>
+    <p style="margin-top:14px;">Prelucrăm datele cu caracter personal în baza <strong>interesului legitim al afacerii</strong> și <strong>necesității contractuale</strong>, în conformitate cu Legea RM nr. 133 din 08.07.2011 privind protecția datelor cu caracter personal.</p>
   </div>
 
   <div class="section">
@@ -410,12 +485,15 @@
       <div class="section-icon"><svg viewBox="0 0 24 24"><path d="M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zM7 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg></div>
       <h2>Servicii terțe</h2>
     </div>
-    <table class="data-table">
-      <tr><th>Serviciu</th><th>Furnizor</th><th>Scop</th><th>Politică</th></tr>
-      <tr><td>Firebase Authentication</td><td>Google LLC</td><td>Autentificare utilizatori</td><td><a href="https://firebase.google.com/support/privacy" target="_blank">Vizualizare</a></td></tr>
-      <tr><td>Cloud Firestore</td><td>Google LLC</td><td>Stocare date contracte</td><td><a href="https://firebase.google.com/support/privacy" target="_blank">Vizualizare</a></td></tr>
-      <tr><td>Firebase Storage</td><td>Google LLC</td><td>Stocare imagini vehicule</td><td><a href="https://firebase.google.com/support/privacy" target="_blank">Vizualizare</a></td></tr>
-    </table>
+    <div class="table-wrap">
+      <table class="data-table">
+        <tr><th>Serviciu</th><th>Furnizor</th><th>Scop</th><th>Politică</th></tr>
+        <tr><td>Firebase Authentication</td><td>Google LLC</td><td>Autentificare utilizatori</td><td><a href="https://firebase.google.com/support/privacy" target="_blank">Vizualizare</a></td></tr>
+        <tr><td>Cloud Firestore</td><td>Google LLC</td><td>Stocare date contracte</td><td><a href="https://firebase.google.com/support/privacy" target="_blank">Vizualizare</a></td></tr>
+        <tr><td>Firebase Storage</td><td>Google LLC</td><td>Stocare imagini vehicule</td><td><a href="https://firebase.google.com/support/privacy" target="_blank">Vizualizare</a></td></tr>
+      </table>
+    </div>
+    <p class="table-hint">← glisați pentru mai mult →</p>
   </div>
 
   <div class="section">
@@ -428,7 +506,21 @@
       <li>Autentificarea este gestionată de Firebase Authentication</li>
       <li>Regulile de securitate Firestore restricționează accesul la baza de date</li>
       <li>Parolele nu sunt stocate în text simplu</li>
+      <li>Aplicația este accesibilă exclusiv personalului autorizat</li>
     </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
+      <h2>Retenția datelor</h2>
+    </div>
+    <ul>
+      <li><strong>Date de autentificare</strong> — pe durata contului de utilizator autorizat</li>
+      <li><strong>Date contractuale și ale clienților</strong> — minimum 5 ani conform legislației contabile și fiscale din Republica Moldova</li>
+      <li><strong>Date vehicule</strong> — pe durata în care vehiculul face parte din flotă</li>
+    </ul>
+    <p style="margin-top:10px;">La solicitare, vom șterge datele personale care nu mai sunt necesare din punct de vedere legal, în termen de 30 de zile.</p>
   </div>
 
   <div class="section">
@@ -442,9 +534,10 @@
       <li><strong>Rectificare</strong> — corectarea datelor inexacte sau incomplete</li>
       <li><strong>Ștergere</strong> — solicitarea ștergerii datelor personale</li>
       <li><strong>Restricție</strong> — limitarea prelucrării datelor</li>
-      <li><strong>Portabilitate</strong> — primirea datelor într-un format structurat</li>
+      <li><strong>Opoziție</strong> — obiecție față de prelucrarea bazată pe interes legitim</li>
+      <li><strong>Portabilitate</strong> — primirea datelor într-un format structurat, lizibil automat</li>
     </ul>
-    <p style="margin-top:14px;">Pentru exercitarea acestor drepturi, contactați-ne la: <a href="mailto:digitaldream.md@gmail.com">digitaldream.md@gmail.com</a></p>
+    <p style="margin-top:14px;">Pentru exercitarea acestor drepturi: <a href="mailto:digitaldream.md@gmail.com">digitaldream.md@gmail.com</a></p>
   </div>
 
   <div class="section">
@@ -458,21 +551,30 @@
       <li><strong>Adresă:</strong> MD-2050, str. Calea Moșilor, 38, mun. Chișinău, Republica Moldova</li>
       <li><strong>Email:</strong> <a href="mailto:digitaldream.md@gmail.com">digitaldream.md@gmail.com</a></li>
     </ul>
+    <div class="highlight">Vom răspunde la toate solicitările legate de confidențialitate în termen de <strong>30 de zile calendaristice</strong>.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+      <h2>Modificări ale acestei politici</h2>
+    </div>
+    <p>Putem actualiza această Politică de Confidențialitate periodic. Vom notifica utilizatorii cu privire la modificările semnificative prin actualizarea „Datei de intrare în vigoare" din partea de sus a acestei pagini. Utilizarea continuă a aplicației după modificări constituie acceptarea politicii revizuite.</p>
   </div>
 
 </div>
 
 <footer>
-  <p>© 2025 <strong>DIGITAL DREAM S.R.L.</strong> — All rights reserved.</p>
+  <p>© 2026 <strong>DIGITAL DREAM S.R.L.</strong> — All rights reserved.</p>
   <p style="margin-top:6px;">CrazyRent is a proprietary business application. Unauthorized access is prohibited.</p>
 </footer>
 
 <script>
-  function showLang(lang) {
-    document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.lang-tab').forEach(el => el.classList.remove('active'));
+  function showLang(lang, btn) {
+    document.querySelectorAll('.content').forEach(function(el) { el.classList.remove('active'); });
+    document.querySelectorAll('.lang-tab').forEach(function(el) { el.classList.remove('active'); });
     document.getElementById(lang).classList.add('active');
-    event.target.classList.add('active');
+    btn.classList.add('active');
   }
 </script>
 
